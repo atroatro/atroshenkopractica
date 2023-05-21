@@ -1,0 +1,331 @@
+http://213.155.192.79:3001/ypv/up
+
+
+USE [master]
+GO
+
+/****** Object:  Database [fab2021]    Script Date: 04.05.2023 12:06:52 ******/
+CREATE DATABASE [fab2021]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'fab2021', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\fab2021.mdf' , SIZE = 73728KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'fab2021_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\fab2021_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [fab2021].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [fab2021] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [fab2021] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [fab2021] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [fab2021] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [fab2021] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [fab2021] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [fab2021] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [fab2021] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [fab2021] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [fab2021] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [fab2021] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [fab2021] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [fab2021] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [fab2021] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [fab2021] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [fab2021] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [fab2021] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [fab2021] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [fab2021] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [fab2021] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [fab2021] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [fab2021] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [fab2021] SET RECOVERY SIMPLE 
+GO
+
+ALTER DATABASE [fab2021] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [fab2021] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [fab2021] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [fab2021] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [fab2021] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [fab2021] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [fab2021] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+
+ALTER DATABASE [fab2021] SET QUERY_STORE = OFF
+GO
+
+ALTER DATABASE [fab2021] SET  READ_WRITE 
+GO
+
+фурнитура
+
+USE [fab2021]
+GO
+
+/****** Object:  Table [dbo].[Furnitura]    Script Date: 04.05.2023 12:09:03 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Furnitura](
+	[idfur] [int] IDENTITY(1,1) NOT NULL,
+	[namefur] [nvarchar](50) NULL,
+	[photo] [varbinary](max) NULL,
+	[countfur] [int] NULL,
+ CONSTRAINT [PK_Furnitura] PRIMARY KEY CLUSTERED 
+(
+	[idfur] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+изделия 
+
+USE [fab2021]
+GO
+
+/****** Object:  Table [dbo].[Izdeliya]    Script Date: 04.05.2023 12:10:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Izdeliya](
+	[idizd] [int] IDENTITY(1,1) NOT NULL,
+	[nameizd] [nvarchar](50) NULL,
+	[length] [int] NULL,
+	[width] [int] NULL,
+ CONSTRAINT [PK_Izdeliya] PRIMARY KEY CLUSTERED 
+(
+	[idizd] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+ткани
+
+USE [fab2021]
+GO
+
+/****** Object:  Table [dbo].[Tkani]    Script Date: 04.05.2023 12:10:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Tkani](
+	[idtkan] [int] IDENTITY(1,1) NOT NULL,
+	[nametkan] [nvarchar](50) NULL,
+	[color] [nvarchar](50) NULL,
+	[width] [int] NULL,
+	[length] [int] NULL,
+	[description] [nvarchar](50) NULL,
+	[phototkan] [varbinary](max) NULL,
+ CONSTRAINT [PK_Tkani] PRIMARY KEY CLUSTERED 
+(
+	[idtkan] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+пользователи
+
+USE [fab2021]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 04.05.2023 12:11:12 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[iduser] [int] IDENTITY(1,1) NOT NULL,
+	[login] [nvarchar](50) NULL,
+	[pass] [nvarchar](50) NULL,
+	[role] [nvarchar](50) NULL,
+	[fam] [nvarchar](50) NULL,
+	[name] [nvarchar](50) NULL,
+	[otch] [nvarchar](50) NULL,
+	[phone] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[iduser] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+заказ
+
+USE [fab2021]
+GO
+
+/****** Object:  Table [dbo].[Zakaz]    Script Date: 04.05.2023 12:11:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Zakaz](
+	[idzak] [int] IDENTITY(1,1) NOT NULL,
+	[idizd] [int] NULL,
+	[idzakazchik] [int] NULL,
+	[idman] [int] NULL,
+	[idtkan] [int] NULL,
+	[idfur] [int] NULL,
+	[countfur] [int] NULL,
+	[countizd] [int] NULL,
+ CONSTRAINT [PK_Zakaz] PRIMARY KEY CLUSTERED 
+(
+	[idzak] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Zakaz]  WITH CHECK ADD  CONSTRAINT [FK_Zakaz_Furnitura] FOREIGN KEY([idfur])
+REFERENCES [dbo].[Furnitura] ([idfur])
+GO
+
+ALTER TABLE [dbo].[Zakaz] CHECK CONSTRAINT [FK_Zakaz_Furnitura]
+GO
+
+ALTER TABLE [dbo].[Zakaz]  WITH CHECK ADD  CONSTRAINT [FK_Zakaz_Izdeliya] FOREIGN KEY([idizd])
+REFERENCES [dbo].[Izdeliya] ([idizd])
+GO
+
+ALTER TABLE [dbo].[Zakaz] CHECK CONSTRAINT [FK_Zakaz_Izdeliya]
+GO
+
+ALTER TABLE [dbo].[Zakaz]  WITH CHECK ADD  CONSTRAINT [FK_Zakaz_Tkani] FOREIGN KEY([idtkan])
+REFERENCES [dbo].[Tkani] ([idtkan])
+GO
+
+ALTER TABLE [dbo].[Zakaz] CHECK CONSTRAINT [FK_Zakaz_Tkani]
+GO
+
+ALTER TABLE [dbo].[Zakaz]  WITH CHECK ADD  CONSTRAINT [FK_Zakaz_Users] FOREIGN KEY([idzakazchik])
+REFERENCES [dbo].[Users] ([iduser])
+GO
+
+ALTER TABLE [dbo].[Zakaz] CHECK CONSTRAINT [FK_Zakaz_Users]
+GO
+
+ALTER TABLE [dbo].[Zakaz]  WITH CHECK ADD  CONSTRAINT [FK_Zakaz_Users1] FOREIGN KEY([idman])
+REFERENCES [dbo].[Users] ([iduser])
+GO
+
+ALTER TABLE [dbo].[Zakaz] CHECK CONSTRAINT [FK_Zakaz_Users1]
+GO
+
+
+
+
+
+
+SET IDENTITY_INSERT Accessories on 
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (1, N'Бусинки 1 ', CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Бусинки 1.jpg'), 20)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (2, N'Бусинки 2 ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Бусинки 2.jpg') , 31)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (3, N'Бусинки 3 ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Бусинки 3.jpg'), 150)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (4, N'Бусинки 4 ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Бусинки 4.jpg') , 210)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (5, N'Бусинки 5 ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Бусинки 5.jpg') , 115)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (6, N'Пряжка 1  ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пряжка 1.jpg') , 432)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (7, N'Пряжка 2  ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пряжка 2.jpg') , 54)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (8, N'Пряжка 3  ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пряжка 3.jpg') , 542)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (9, N'Пряжка 4  ',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пряжка 4.jpg') , 458)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (10, N'Пуговицы 1',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пуговицы 1.jpg') , 54)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (11, N'Пуговицы 2',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пуговицы 2.jpg') , 354)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (12, N'Пуговицы 3',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пуговицы 3.jpg') , 78)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (13, N'Пуговицы 4',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пуговицы 4.jpg') , 576)
+insert into Accessories (idacc,nameacc,photo,countacc) VALUES (14, N'Пуговицы 5',CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото фурнитур\Пуговицы 5.jpg') , 43)
+
+
+
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Шарлотта.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Семечки.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Классика.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Ажур.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Ветки.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Вензель.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Пузырьки.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Ветка.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Эмили.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Робина.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Амор.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Шалимар.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Балу.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Жаккард.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Цветы.jpg'))
+insert into Fabrics (photofab) VALUES ( CONVERT(varbinary(MAX), 'D:\37 группа 2023\Атрошенко Павел\111Мобильные\СУБД Швейная фабрика 54 ч\Ресурсы\Фото тканей\Завитки.jpg'))
+
+
+public static string TxtCon = @"Data Source=213.155.192.79,3002;Initial Catalog=Ozdorvleniebase;Persist Security Info=True;User ID=u21atrosh;Password=etx7";
